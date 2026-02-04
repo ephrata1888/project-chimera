@@ -12,7 +12,7 @@ Project Chimera is a spec-driven, agent-ready Python environment designed for AI
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/project-chimera.git
+git clone https://github.com/ephrata1888/project-chimera.git
 cd project-chimera
 ```
 
