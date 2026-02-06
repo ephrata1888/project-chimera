@@ -1,0 +1,35 @@
+name: CI
+
+# Run tests on every push to any branch
+on: [push]
+
+jobs:
+  test:
+    name: Run make test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        # Fetches the repository so the workflow can access the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js (LTS)
+        # Provides Node.js environment for any Node-based tasks
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Set up Python 3.11
+        # Ensures Python 3.11 is available for running Python-based tests/tools
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Docker Buildx (optional)
+        # Hosted runners include Docker; this step ensures buildx support if needed by Makefile
+        uses: docker/setup-buildx-action@v2
+
+      - name: Run tests (make test)
+        # Run the repository's test target. The Makefile will run tests inside the container
+        run: |
+          set -e
+          make test

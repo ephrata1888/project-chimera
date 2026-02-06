@@ -1,0 +1,43 @@
+# CodeRabbit / AI code-reviewer configuration
+# This is a generic config that instructs the reviewer to run on push,
+# check spec alignment and security vulnerabilities, and produce a summary.
+
+version: 1
+run_on: push
+
+reviewers:
+  - name: CodeRabbit
+    type: ai
+
+checks:
+  - id: spec_alignment
+    name: Spec Alignment
+    description: |
+      Verify that code changes align with the project's specs in `specs/`.
+      This includes checking required spec files, matching API contracts, and
+      ensuring no implementation contradicts documented constraints.
+    severity: high
+    actions:
+      - verify_files:
+          paths: ["specs/**", "CLAUDE.md", ".github/copilot-instructions.md"]
+      - analyze_changes_against_specs: {}
+
+  - id: security_vulnerabilities
+    name: Security Vulnerabilities
+    description: |
+      Perform automated security checks focused on common issues (OWASP Top 10,
+      dependency vulnerabilities, insecure use of secrets, unsafe subprocess calls).
+    severity: high
+    actions:
+      - dependency_scan: {}
+      - static_analysis: {}
+      - secret_detection: {}
+
+report:
+  summary: true
+  format: markdown
+  notify: [pull_request, push]
+
+output:
+  max_issues: 50
+  include_recommendations: true
