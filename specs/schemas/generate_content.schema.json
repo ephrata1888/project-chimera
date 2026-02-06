@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "generate_content request",
+  "type": "object",
+  "properties": {
+    "prompt": { "type": "string" },
+    "style": { "type": "string" },
+    "length_seconds": { "type": "integer", "minimum": 5 },
+    "audience": { "type": "string" }
+  },
+  "required": ["prompt"],
+  "additionalProperties": false
+}

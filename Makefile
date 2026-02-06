@@ -14,7 +14,7 @@ setup:
 test:
 	@echo "Running tests inside Docker..."
 	docker run --rm -v $(PWD):/workspace -w /workspace $(IMAGE_NAME) \
-		/bin/sh -c "pip install --no-cache-dir pytest >/dev/null 2>&1 || true; pytest -q"
+		/bin/sh -c "pip install --no-cache-dir -r requirements-dev.txt >/dev/null 2>&1 || true; pytest -q"
 
 # Run an optional spec check inside Docker
 spec-check:

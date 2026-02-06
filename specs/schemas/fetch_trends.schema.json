@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "fetch_trends response",
+  "type": "object",
+  "properties": {
+    "source": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "trends": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "score": { "type": "number" }
+        },
+        "required": ["name", "score"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["source", "timestamp", "trends"],
+  "additionalProperties": false
+}
